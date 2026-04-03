@@ -1,31 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Digital Archive: Project 402</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Digital Media & Society</title>
     <style>
-        body { font-family: serif; background: #fff; color: #000; margin: 40px; line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; border: 1px solid #a2a9b1; padding: 20px; }
-        h1 { border-bottom: 1px solid #a2a9b1; font-size: 28px; }
-        .video-container { 
-            position: relative; padding-bottom: 56.25%; height: 0; 
-            border: 1px solid #ccc; background: #f8f9fa; 
-        }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .notice { background: #f8f9fa; border: 1px solid #eaecf0; padding: 10px; font-size: 0.9em; margin-bottom: 20px; }
+        /* Wikipedia / Google Docs Aesthetic */
+        body { font-family: 'Times New Roman', Times, serif; background: #fff; color: #202124; margin: 0; padding: 0; line-height: 1.6; }
+        .navbar { background: #f8f9fa; border-bottom: 1px solid #dadce0; padding: 10px 50px; font-size: 14px; color: #70757a; }
+        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+        
+        h1 { font-family: 'Arial', sans-serif; font-size: 28px; border-bottom: 1px solid #a2a9b1; padding-bottom: 5px; margin-bottom: 10px; font-weight: normal; }
+        .subtitle { font-style: italic; color: #54595d; margin-bottom: 25px; font-size: 14px; }
+
+        /* The Player UI */
+        .player-section { background: #f8f9fa; border: 1px solid #c8ccd1; padding: 15px; border-radius: 2px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #000; box-shadow: inset 0 0 10px #000; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Stealth Input Area */
+        .tools { margin-top: 20px; display: flex; gap: 5px; opacity: 0.1; transition: opacity 0.3s; }
+        .tools:hover { opacity: 1.0; } /* Only shows up clearly when you hover over it */
+        
+        input { flex: 1; border: 1px solid #ddd; padding: 8px; font-size: 12px; font-family: monospace; outline: none; }
+        button { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 5px 15px; cursor: pointer; font-size: 12px; }
+        button:hover { background: #eef0f2; }
+
+        .footer-text { margin-top: 30px; font-size: 13px; color: #54595d; border-top: 1px solid #eaecf0; padding-top: 10px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Reference Material: Media Study</h1>
-        <div class="notice">
-            <b>Note:</b> This page contains archived video data for educational analysis.
-        </div>
-        
+
+<div class="navbar">File &nbsp; Edit &nbsp; View &nbsp; Tools &nbsp; Help &nbsp; | &nbsp; Last edit was 2 minutes ago</div>
+
+<div class="container">
+    <h1>URL PLAYER</h1>
+    <div class="subtitle">From Wikipedia, the free encyclopedia (Mirrored for Research)</div>
+
+    <div class="player-section">
         <div class="video-container">
-            <iframe src="https://invidious.nerdvpn.de/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            <iframe id="main-player" src="https://inv.tux.digital/embed/ScMzIvxBSi4" allowfullscreen></iframe>
         </div>
 
-        <p>This entry discusses the impact of digital media in the 21st century. The attached visual asset serves as a primary source for the ongoing research project.</p>
+        <div class="tools">
+            <input type="text" id="url-input" placeholder="Enter Mirror Embed URL (e.g. https://vid.puffyan.us/embed/...)">
+            <button onclick="loadVideo()">Update Asset</button>
+        </div>
     </div>
+
+    <div class="footer-text">
+        <p><b>References:</b></p>
+        <ul>
+            <li>Digital Ethics in the 21st Century, Vol 4.</li>
+            <li>Video metadata retrieved via decentralized academic mirrors.</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function loadVideo() {
+        const val = document.getElementById('url-input').value;
+        if (val) {
+            document.getElementById('main-player').src = val;
+        }
+    }
+</script>
+
 </body>
 </html>
